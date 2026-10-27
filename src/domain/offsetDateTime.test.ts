@@ -3,7 +3,12 @@ import { z } from "zod";
 
 import { offsetDateTimeSchema } from "./offsetDateTime.js";
 
-/** The validator this schema replaces; it remains the oracle for the accepted set. */
+/**
+ * The Zod 4.4 validator this schema replaced. Its accepted set is pinned by
+ * ACCEPTED/REJECTED below; Zod 4.6 later stopped accepting omitted seconds, so
+ * the current Zod is no longer an oracle for that set. It is kept only for the
+ * emitted-pattern comparison.
+ */
 const replaced = z.string().datetime({ offset: true });
 
 const ACCEPTED: readonly (readonly [string, string])[] = [
@@ -42,8 +47,6 @@ const REJECTED: readonly (readonly [string, string])[] = [
   ["unrelated text", "not a timestamp"],
 ];
 
-const CASES = [...ACCEPTED, ...REJECTED];
-
 describe("offset datetime schema", () => {
   it.each(ACCEPTED)("accepts %s", (_label, value) => {
     expect(offsetDateTimeSchema.safeParse(value).success).toBe(true);
@@ -51,15 +54,6 @@ describe("offset datetime schema", () => {
 
   it.each(REJECTED)("rejects %s", (_label, value) => {
     expect(offsetDateTimeSchema.safeParse(value).success).toBe(false);
-  });
-
-  it("classifies every case exactly as the replaced Zod validator does", () => {
-    const divergences = CASES.filter(
-      ([, value]) =>
-        offsetDateTimeSchema.safeParse(value).success !==
-        replaced.safeParse(value).success,
-    ).map(([label]) => label);
-    expect(divergences).toEqual([]);
   });
 
   it("emits a pattern that compiles in every mode a client may use", () => {

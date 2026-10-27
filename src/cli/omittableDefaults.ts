@@ -54,9 +54,12 @@ const withOmittableDefaults = (schema: z.ZodObject): z.ZodObject => {
   );
 };
 
-/** Zod accepts an omitted value (`optin`) but always produces one (`optout`). */
+/**
+ * Zod accepts an omitted value (`optin`: `"optional"`, or `"defaulted"` since
+ * Zod 4.6) but always produces one (`optout`).
+ */
 const fillsOmission = (field: z.ZodType): boolean =>
-  field._zod.optin === "optional" && field._zod.optout === undefined;
+  field._zod.optin !== undefined && field._zod.optout === undefined;
 
 const optionalWithMetadata = (field: z.ZodType): z.ZodType => {
   const metadata = field.meta();
