@@ -304,7 +304,7 @@ def main():
     translations.add_argument("--language", help="Check one language, such as zh-CN")
     translations.add_argument("--strict", action="store_true", help="Fail on missing or fuzzy translations")
     serve = commands.add_parser("serve", help="Prepare and preview the static site")
-    serve.add_argument("--port", type=int, default=4173)
+    serve.add_argument("--port", type=int, default=21303)
     serve.add_argument("--base-path", choices=("/", "/rea/"), default="/")
     args = parser.parse_args()
     root = Path(__file__).resolve().parent.parent

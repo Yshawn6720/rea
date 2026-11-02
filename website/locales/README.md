@@ -32,7 +32,7 @@ python3 scripts/website.py translations check --language zh-CN
 python3 scripts/website.py serve
 ```
 
-Open <http://127.0.0.1:4173/zh-CN/>. The language selector opens the equivalent
+Open <http://127.0.0.1:21303/zh-CN/>. The language selector opens the equivalent
 page in another edition. Check the page you edited, its figures and its copy
 buttons. Rebuild a running preview with `python3 scripts/prepare-website.py`.
 Before submitting a change, run `python3 scripts/website.py check`.

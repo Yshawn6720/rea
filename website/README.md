@@ -28,7 +28,7 @@ python3 -m pip install -r website/requirements.txt
 python3 scripts/website.py serve
 ```
 
-Open <http://127.0.0.1:4173/>. Refresh the browser after editing a file.
+Open <http://127.0.0.1:21303/>. Refresh the browser after editing a file.
 After editing source HTML or a catalog, run `python3 scripts/prepare-website.py`
 to rebuild the preview. `serve` prepares the site once when it starts.
 Keep the virtual environment active when preparing assets. CairoSVG needs the
@@ -73,8 +73,8 @@ before `arch` gets purged and the preview fails again. For other systems, see
 CI installs both packages explicitly before rendering the card.
 
 To test the GitHub Pages prefix, use
-`python3 scripts/website.py serve --port 4174 --base-path /rea/` and open
-<http://127.0.0.1:4174/rea/>.
+`python3 scripts/website.py serve --port 21303 --base-path /rea/` and open
+<http://127.0.0.1:21303/rea/>.
 
 ## Contribute a page or correction
 

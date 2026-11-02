@@ -237,7 +237,9 @@ verification prerequisites. Keep the generated addon and manifest uncommitted.
 
 The VitePress site uses the Markdown files in `docs/`. Run `npm run docs:dev`
 for live editing, `npm run docs:build` to check the production build and
-links, and `npm run docs:preview` to preview that build at `/rea/`.
+links, and `npm run docs:preview` to preview that build at `/rea/`. Both
+`docs:dev` and `docs:preview` use fixed port 21304; open
+`http://localhost:21304/rea/`.
 
 Site navigation lives in `docs/.vitepress/config.ts`. Keep links to guides
 relative so they work on GitHub and the website; link to repository files
